@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <ListPreference android:title="Palette"
+			android:key="palette" 
+			android:summary="Select background colors" android:entries="@array/palettes"
+			android:entryValues="@array/palettesValues" />
+  <ListPreference android:title="Shape"
+			android:key="shape" 
+			android:summary="Select objects shape" android:entries="@array/shapes"
+			android:entryValues="@array/shapesValues" />
+</PreferenceScreen> 

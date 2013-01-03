@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="palettes">
+		<item>Palette 1</item>
+		<item>Palette 2</item>
+		<item>Palette 3</item>
+	</string-array>
+	<string-array name="palettesValues">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array>
+</resources>
