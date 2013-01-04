@@ -88,10 +88,38 @@ public class MyWallpaperService extends WallpaperService {
 		  	palette2[2] = Color.rgb(247,247,247);
 		  	palette2[3] = Color.rgb(135,129,120);
 		  	palette2[4] = Color.rgb(209,193,171);
+	  	  int[] palette3 = new int[5];
+	  		palette3[0] = Color.rgb(16,1,8);
+	  		palette3[1] = Color.rgb(71,4,45);
+	  		palette3[2] = Color.rgb(201,43,104);
+	  		palette3[3] = Color.rgb(237,107,133);
+	  		palette3[4] = Color.rgb(251,224,213);
+	  	  int[] palette4 = new int[5];
+	  		palette4[0] = Color.rgb(253,229,167);
+	  		palette4[1] = Color.rgb(246,199,129);
+	  		palette4[2] = Color.rgb(255,179,145);
+	  		palette4[3] = Color.rgb(255,236,113);
+	  		palette4[4] = Color.rgb(225,64,98);
+	  	  int[] palette5 = new int[5];
+		  	palette5[0] = Color.rgb(251,213,212);
+		  	palette5[1] = Color.rgb(188,218,166);
+		  	palette5[2] = Color.rgb(241,167,216);
+		  	palette5[3] = Color.rgb(173,185,209);
+		  	palette5[4] = Color.rgb(230,140,165);
+	  	  int[] palette6 = new int[5];
+		  	palette6[0] = Color.rgb(254,252,255);
+		  	palette6[1] = Color.rgb(174,247,255);
+		  	palette6[2] = Color.rgb(150,175,153);
+		  	palette6[3] = Color.rgb(75,75,75);
+		  	palette6[4] = Color.rgb(45,79,80);
 	      
 		  paletteList.add(palette0);
 		  paletteList.add(palette1);
 		  paletteList.add(palette2);
+		  paletteList.add(palette3);
+		  paletteList.add(palette4);
+		  paletteList.add(palette5);
+		  paletteList.add(palette6);
 		  
 	      handler.post(drawRunner);  
 	    }

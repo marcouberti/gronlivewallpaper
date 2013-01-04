@@ -4,10 +4,12 @@
 		<item>Pointer</item>
 		<item>Cross</item>
 		<item>Triangle</item>
+		<item>Ring</item>
 	</string-array>
 	<string-array name="shapesValues">
 		<item>0</item>
 		<item>1</item>
 		<item>2</item>
+		<item>3</item>
 	</string-array>
 </resources>

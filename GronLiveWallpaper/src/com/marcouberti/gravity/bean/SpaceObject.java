@@ -59,6 +59,11 @@ public class SpaceObject extends UniverseObject{
 			canvas.drawLine(x, y-radius, x+radius, y+radius, paint);
 			canvas.drawLine(x+radius, y+radius, x-radius, y+radius, paint);
 			break;
+		case 3:
+			//4) RING
+			canvas.drawCircle(x, y, radius, paint);
+			canvas.drawCircle(x, y, radius*1.4f, paint);
+			break;
 		default:
 			//0) POINTER
 			canvas.drawCircle(x, y, radius, paint);

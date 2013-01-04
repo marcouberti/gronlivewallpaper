@@ -4,10 +4,18 @@
 		<item>Palette 1</item>
 		<item>Palette 2</item>
 		<item>Palette 3</item>
+		<item>Palette 4</item>
+		<item>Palette 5</item>
+		<item>Palette 6</item>
+		<item>Palette 7</item>
 	</string-array>
 	<string-array name="palettesValues">
 		<item>0</item>
 		<item>1</item>
 		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>6</item>
 	</string-array>
 </resources>
