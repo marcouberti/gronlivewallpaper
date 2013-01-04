@@ -28,7 +28,7 @@ public class MyWallpaperService extends WallpaperService {
 	  	
 	  	//bg drawing parameters
 	  	private static final int COLOR_POINT_SIZE = 30;
-		private static final int OBJECT_NUMBER = 50;
+		private static final int OBJECT_NUMBER = 20;
 	  	private int[] array_x = new int[COLOR_POINT_SIZE];
 	  	private int[] array_y = new int[COLOR_POINT_SIZE];
 	  	private int[] array_radius = new int[COLOR_POINT_SIZE];
@@ -127,6 +127,10 @@ public class MyWallpaperService extends WallpaperService {
 	    @Override
 	    public void onVisibilityChanged(boolean visible) {
 	      this.visible = visible;
+	      
+	      int min = width;
+	      if(height < width) min = height;
+	      
 	      if (visible) {
 	    	//refresh preferences
 	    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MyWallpaperService.this);
@@ -147,7 +151,7 @@ public class MyWallpaperService extends WallpaperService {
 		    	  int y=(int)(Math.random()*height);
 		    	  array_x[i]=(int)(Math.random()*width);
 		    	  array_y[i]=(int)(Math.random()*height);
-		    	  array_radius[i]=(int)(Math.random()*200);
+		    	  array_radius[i]=(int)(Math.random()*min/4);
 		    }  
 		    initUniverse();
 	        handler.post(drawRunner);
@@ -176,13 +180,19 @@ public class MyWallpaperService extends WallpaperService {
 	    private void initUniverse() {
 		        UniverseManager.initialize();
 		        
+		        //Dimensione oggetti in proporzione allo schermo
+		        int min = width;
+			    if(height < width) min = height;
+		        int radius = min / 100;
+		        if(radius < 2) radius = 2;
+		        
 		        for(int i=0; i<OBJECT_NUMBER; i++) {
 			        SpaceObject s1 = new SpaceObject(getApplicationContext(), choosed_shape);
 			        s1.x = (int)(Math.random()*width);
 			        s1.y = (int)(Math.random()*height);
 			        s1.velx = 0;
 			        s1.vely = 0;
-			        s1.radius = 5+(float)(Math.random()*10);
+			        s1.radius = radius+(float)(Math.random()*2*radius);
 			        UniverseManager.queueSpaceObject(s1);
 		        }
 		        
@@ -283,7 +293,7 @@ public class MyWallpaperService extends WallpaperService {
 	        
 	        handler.removeCallbacks(drawRunner);
 	        if (visible) {
-	          handler.postDelayed(drawRunner, 5);
+	          handler.postDelayed(drawRunner, 1);
 	        }
 	      }
 
