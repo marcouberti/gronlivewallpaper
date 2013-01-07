@@ -14,22 +14,28 @@ public class SpaceObject extends UniverseObject{
 	Rect destRect;
 	Path path;
 	int color = Color.WHITE;
+	Paint centerPaint;
 	
 	public SpaceObject(Context context, int shape) {
 		paint = new Paint();//Paint.ANTI_ALIAS_FLAG
 		paint.setColor(color);
 		paint.setStyle(Paint.Style.FILL);
-		paint.setAlpha(180);
+		//paint.setAlpha(180);
 		//paint.setStrokeWidth(2);
 		paint.setMaskFilter(new BlurMaskFilter(3, Blur.NORMAL));
 		this.shape = shape;
 		rotation = (float)(Math.random()*180);
 		path = new Path();
+		
+		centerPaint = new Paint();
+		centerPaint.setStyle(Paint.Style.FILL);
+		centerPaint.setColor(color);
 	}
 
 	public void setColor(int color) {
 		this.color = color;
 		paint.setColor(color);
+		centerPaint.setColor(color);
 	}
 	
 	@Override
@@ -70,6 +76,7 @@ public class SpaceObject extends UniverseObject{
 		case 4:
 			//4) POINT
 			canvas.drawCircle(x, y, radius, paint);
+			canvas.drawCircle(x, y, radius, centerPaint);
 			break;
 		default:
 			//0) POINTER
