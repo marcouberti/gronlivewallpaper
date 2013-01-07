@@ -1,6 +1,8 @@
 package com.marcouberti.gravity.bean;
 
 import android.content.Context;
+import android.graphics.BlurMaskFilter;
+import android.graphics.BlurMaskFilter.Blur;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -16,9 +18,10 @@ public class SpaceObject extends UniverseObject{
 	public SpaceObject(Context context, int shape) {
 		paint = new Paint();//Paint.ANTI_ALIAS_FLAG
 		paint.setColor(color);
-		paint.setStyle(Paint.Style.STROKE);
-		paint.setStrokeWidth(1);
-		//paint.setMaskFilter(new BlurMaskFilter(5, Blur.OUTER));
+		paint.setStyle(Paint.Style.FILL);
+		paint.setAlpha(180);
+		//paint.setStrokeWidth(2);
+		paint.setMaskFilter(new BlurMaskFilter(3, Blur.NORMAL));
 		this.shape = shape;
 		rotation = (float)(Math.random()*180);
 		path = new Path();
@@ -32,8 +35,8 @@ public class SpaceObject extends UniverseObject{
 	@Override
 	public void draw(Canvas canvas) {
 		// rotate the canvas on center of the text to draw
-		canvas.save();
-		canvas.rotate(rotation, x, y);
+		//canvas.save();
+		//canvas.rotate(rotation, x, y);
 		switch (shape) {
 		case 1:
 			//1) CROSS
@@ -64,6 +67,10 @@ public class SpaceObject extends UniverseObject{
 			canvas.drawCircle(x, y, radius, paint);
 			canvas.drawCircle(x, y, radius*1.4f, paint);
 			break;
+		case 4:
+			//4) POINT
+			canvas.drawCircle(x, y, radius, paint);
+			break;
 		default:
 			//0) POINTER
 			canvas.drawCircle(x, y, radius, paint);
@@ -72,7 +79,7 @@ public class SpaceObject extends UniverseObject{
 			break;
 		}
 
-		canvas.restore();
+		//canvas.restore();
 	}
 
 	@Override

@@ -218,9 +218,7 @@ public class UniverseManager {
 			so.y = (float)(so.y + ((double)(so.vely)*(double)((double)delta/(double)1000)));
 			
 			//AGGIORNO LA ROTAZIONE
-			//so.rotation = so.rotation + 1;
-			
-			so.rotation = (float)(Math.toDegrees(Math.atan2(0-so.velx,so.vely-0))); 
+			//so.rotation = (float)(Math.toDegrees(Math.atan2(0-so.velx,so.vely-0))); 
 			
 
 			//LIMITI UNIVERSO

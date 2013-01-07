@@ -183,7 +183,7 @@ public class MyWallpaperService extends WallpaperService {
 		        //Dimensione oggetti in proporzione allo schermo
 		        int min = width;
 			    if(height < width) min = height;
-		        int radius = min / 100;
+		        int radius = min / 200;
 		        if(radius < 2) radius = 2;
 		        
 		        for(int i=0; i<OBJECT_NUMBER; i++) {
@@ -193,6 +193,7 @@ public class MyWallpaperService extends WallpaperService {
 			        s1.velx = 0;
 			        s1.vely = 0;
 			        s1.radius = radius+(float)(Math.random()*2*radius);
+			        //s1.setColor(Color.rgb((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)));
 			        UniverseManager.queueSpaceObject(s1);
 		        }
 		        
@@ -237,64 +238,53 @@ public class MyWallpaperService extends WallpaperService {
 	      }
 
 	      private void draw() {
-	        SurfaceHolder myThreadSurfaceHolder = getSurfaceHolder();
-	        
-	        Canvas canvas = null;
-            try {
-            	canvas = myThreadSurfaceHolder.lockCanvas(null);
-                //synchronized (myThreadSurfaceHolder) {
-                	UniverseManager.updateUniverse();
-                	try {
-        				canvas.drawColor(Color.BLACK);
-        				
-        				//disegno lo sfondo
-        				for(int i=0; i<COLOR_POINT_SIZE; i++) {
-        					paintCircles.setColor(array_color[i]);
-        					paintCircles.setAlpha(150);
-            				canvas.drawCircle(array_x[i], array_y[i], array_radius[i], paintCircles);
-        				}
-        				
-        				/*
-        				if(drawing){
-        					canvas.drawCircle(initX, initY, radius, paint);
-        				}
-        		
-        				
-        				for(NonAttractedObject nao: UniverseManager.nonAttractedObjects) {
-        					if(nao.destroyed) continue;
-        					//bufferCanvas.drawCircle(so.x, so.y, so.radius, paint);
-        					nao.draw(canvas);
-        				}
-        				*/
-        				
-        				for(GravityObject go: UniverseManager.gravityObjects) {
-        					if(go.destroyed) continue;
-        					//canvas.drawCircle(go.x, go.y, go.power, paint);
-        					go.draw(canvas);
-        				}
-        				
-        				for(SpaceObject so: UniverseManager.spaceObjects) {
-        					if(so.destroyed) continue;
-        					//bufferCanvas.drawCircle(so.x, so.y, so.radius, paint);
-        					so.draw(canvas);
-        				}
-        			}catch (Exception e) {
-        				e.printStackTrace();
-        			}
-                //}
-            } finally {
-                // do this in a finally so that if an exception is thrown
-                // during the above, we don't leave the Surface in an
-                // inconsistent state
-                if (canvas != null) {
-                	myThreadSurfaceHolder.unlockCanvasAndPost(canvas);
-                }
-            }
-	        
-	        handler.removeCallbacks(drawRunner);
-	        if (visible) {
-	          handler.postDelayed(drawRunner, 1);
-	        }
+	    	  if(visible) {
+			        SurfaceHolder myThreadSurfaceHolder = getSurfaceHolder();
+			        
+			        Canvas canvas = null;
+		            try {
+		            	canvas = myThreadSurfaceHolder.lockCanvas();
+		                if(canvas != null) {
+		                	UniverseManager.updateUniverse();
+		                	try {
+		        				canvas.drawColor(Color.BLACK);
+		        				
+		        				//disegno lo sfondo
+		        				for(int i=0; i<COLOR_POINT_SIZE; i++) {
+		        					paintCircles.setColor(array_color[i]);
+		        					paintCircles.setAlpha(150);
+		            				canvas.drawCircle(array_x[i], array_y[i], array_radius[i], paintCircles);
+		        				}
+		        				
+		        				for(GravityObject go: UniverseManager.gravityObjects) {
+		        					if(go.destroyed) continue;
+		        					//canvas.drawCircle(go.x, go.y, go.power, paint);
+		        					go.draw(canvas);
+		        				}
+		        				
+		        				for(SpaceObject so: UniverseManager.spaceObjects) {
+		        					if(so.destroyed) continue;
+		        					//bufferCanvas.drawCircle(so.x, so.y, so.radius, paint);
+		        					so.draw(canvas);
+		        				}
+		        			}catch (Exception e) {
+		        				e.printStackTrace();
+		        			}
+		                }
+		            } finally {
+		                // do this in a finally so that if an exception is thrown
+		                // during the above, we don't leave the Surface in an
+		                // inconsistent state
+		                if (canvas != null) {
+		                	myThreadSurfaceHolder.unlockCanvasAndPost(canvas);
+		                }
+		            }
+			        
+			        handler.removeCallbacks(drawRunner);
+			        if (visible) {
+			          handler.postDelayed(drawRunner, 1);
+			        }
+	    	  }
 	      }
 
   } 
