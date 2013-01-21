@@ -29,8 +29,8 @@ public class MyWallpaperService extends WallpaperService {
 	  	//bg drawing parameters
 	  	private static final int COLOR_POINT_SIZE = 30;
 		private static final int OBJECT_NUMBER = 20;
-	  	private int[] array_x = new int[COLOR_POINT_SIZE];
-	  	private int[] array_y = new int[COLOR_POINT_SIZE];
+	  	private double[] array_x = new double[COLOR_POINT_SIZE];
+	  	private double[] array_y = new double[COLOR_POINT_SIZE];
 	  	private int[] array_radius = new int[COLOR_POINT_SIZE];
 	  	private int[] array_color = new int[COLOR_POINT_SIZE];
 	  	//end bg drawing parameters
@@ -253,7 +253,38 @@ public class MyWallpaperService extends WallpaperService {
 		        				for(int i=0; i<COLOR_POINT_SIZE; i++) {
 		        					paintCircles.setColor(array_color[i]);
 		        					paintCircles.setAlpha(150);
-		            				canvas.drawCircle(array_x[i], array_y[i], array_radius[i], paintCircles);
+		        					
+		        					//a seconda della dimensione del cerchio cambia la sua velocità
+		        					if(array_radius[i] > width/2) {
+		        						array_x[i]+=0.1;
+		        						array_y[i]+=0.1;
+		        					}else if(array_radius[i] > width/3) {
+		        						array_x[i]+=0.2;
+		        						array_y[i]+=0.2;
+		        					}else if(array_radius[i] > width/4) {
+		        						array_x[i]+=0.3;
+		        						array_y[i]+=0.3;
+		        					}else if(array_radius[i] > width/5) {
+		        						array_x[i]+=0.4;
+		        						array_y[i]+=0.4;
+		        					}else if(array_radius[i] > width/6) {
+		        						array_x[i]+=0.5;
+		        						array_y[i]+=0.5;
+		        					}else {
+		        						array_x[i]+=0.6;
+		        						array_y[i]+=0.6;
+		        					}
+		        					
+		            				canvas.drawCircle((int)array_x[i], (int)array_y[i], array_radius[i], paintCircles);
+		            				
+		            				//se il cerchio sfora dallo schermo lo reinizializzo
+		            				if(array_x[i] -array_radius[i] > width) {
+		            					array_x[i] = -array_radius[i];
+		            				}
+		            				if(array_y[i] -array_radius[i] > height) {
+	            						array_y[i] = -array_radius[i];
+		            				}
+		            				
 		        				}
 		        				
 		        				for(GravityObject go: UniverseManager.gravityObjects) {

@@ -38,8 +38,10 @@ public class SpaceObject extends UniverseObject{
 		centerPaint.setColor(color);
 	}
 	
+	float velocity;
 	@Override
 	public void draw(Canvas canvas) {
+		
 		// rotate the canvas on center of the text to draw
 		//canvas.save();
 		//canvas.rotate(rotation, x, y);
@@ -75,8 +77,9 @@ public class SpaceObject extends UniverseObject{
 			break;
 		case 4:
 			//4) POINT
-			canvas.drawCircle(x, y, radius, paint);
-			canvas.drawCircle(x, y, radius, centerPaint);
+			velocity = 1+Math.abs(((velx +vely) /2)/10);
+			canvas.drawCircle(x, y, radius+velocity, paint);
+			canvas.drawCircle(x, y, radius+velocity, centerPaint);
 			break;
 		default:
 			//0) POINTER
@@ -86,8 +89,9 @@ public class SpaceObject extends UniverseObject{
 			canvas.drawLine(x+radius, y, x, y-(radius*2), paint);
 			*/
 			//4) POINT
-			canvas.drawCircle(x, y, radius, paint);
-			canvas.drawCircle(x, y, radius, centerPaint);
+			velocity = 1+Math.abs(((velx +vely) /2)/10);
+			canvas.drawCircle(x, y, radius+velocity, paint);
+			canvas.drawCircle(x, y, radius+velocity, centerPaint);
 			break;
 		}
 
